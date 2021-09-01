@@ -2,35 +2,12 @@ import flask
 import pickle
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt  # Matlab-style plotting
-import seaborn as sns
-color = sns.color_palette()
-sns.set_style('darkgrid')
-import warnings
-def ignore_warn(*args, **kwargs):
-    pass
-warnings.warn = ignore_warn #ignore annoying warning (from sklearn and seaborn)
-from sklearn.linear_model import ElasticNet, Lasso,  BayesianRidge, LassoLarsIC
-from sklearn.ensemble import RandomForestRegressor,  GradientBoostingRegressor
-from sklearn.kernel_ridge import KernelRidge
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import RobustScaler
-from sklearn.base import BaseEstimator, TransformerMixin, RegressorMixin, clone
-from sklearn.model_selection import KFold, cross_val_score, train_test_split
-from sklearn.metrics import mean_squared_error
-import xgboost as xgb
-import lightgbm as lgb
-from scipy.special import boxcox1p
-from scipy import stats
-from scipy.stats import norm, skew #for some statistics
-
 from model.Predmodel import stacked_averaged_models
+from scipy.stats import norm, skew #for some statistics
+from scipy.special import boxcox1p
 
 pd.set_option('display.float_format', lambda x: '{:.3f}'.format(x)) #Limiting floats output to 3 decimal points
-
 model = stacked_averaged_models
-
-
 app = flask.Flask(__name__, template_folder='templates')
 
 def home(input_variables):
