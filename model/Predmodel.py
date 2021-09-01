@@ -39,6 +39,7 @@ y_train = y_train.SalesPrice.values
 
 
 
+
 lasso = make_pipeline(RobustScaler(), Lasso(alpha =0.0005, random_state=1))
 ENet = make_pipeline(RobustScaler(), ElasticNet(alpha=0.0005, l1_ratio=.9, random_state=3))
 KRR = KernelRidge(alpha=0.6, kernel='polynomial', degree=2, coef0=2.5)
