@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import numpy as np 
 import pandas as pd 
 import matplotlib.pyplot as plt  # Matlab-style plotting
@@ -37,17 +34,13 @@ from scipy.stats import norm, skew #for some statistics
 pd.set_option('display.float_format', lambda x: '{:.3f}'.format(x)) #Limiting floats output to 3 decimal points
 
 
-# In[2]:
-
-
-train = pd.read_csv('https://raw.githubusercontent.com/datach33z3/buyrfly/main/main/train.csv',index_col = 0)
-y_train = pd.read_csv('https://raw.githubusercontent.com/datach33z3/buyrfly/main/y_train.csv',index_col = 0)
+train = pd.read_csv('',index_col = 0)
+y_train = pd.read_csv('https://raw.githubusercontent.com/datach33z3/buyrfly/main/y_train.csv')
 y_train.columns = ['SalesPrice']
 y_train = y_train.SalesPrice.values
-test = pd.read_csv('C:/Users/MrChe/Downloads/Xdat.csv')
+##test = pd.read_csv('C:/Users/MrChe/Downloads/Xdat.csv')
 
 
-# In[4]:
 
 
 lasso = make_pipeline(RobustScaler(), Lasso(alpha =0.0005, random_state=1))
@@ -69,8 +62,6 @@ model_lgb = lgb.LGBMRegressor(objective='regression',num_leaves=5,
                               bagging_freq = 5, feature_fraction = 0.2319,
                               feature_fraction_seed=9, bagging_seed=9,
                               min_data_in_leaf =6, min_sum_hessian_in_leaf = 11)
-
-# In[8]:
 
 
 class StackingAveragedModels(BaseEstimator, RegressorMixin, TransformerMixin):
@@ -108,14 +99,8 @@ class StackingAveragedModels(BaseEstimator, RegressorMixin, TransformerMixin):
             for base_models in self.base_models_ ])
         return self.meta_model_.predict(meta_features)
 
-
-# In[9]:
-
-
 stacked_averaged_models = StackingAveragedModels(base_models = (ENet, GBoost, KRR),
                                                  meta_model = lasso)
 
-
-# In[10]:
 stacked_averaged_models.fit(train.values, y_train)
-# %%
+
