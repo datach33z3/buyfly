@@ -34,8 +34,8 @@ from scipy.stats import norm, skew #for some statistics
 pd.set_option('display.float_format', lambda x: '{:.3f}'.format(x)) #Limiting floats output to 3 decimal points
 
 
-train = pd.read_csv('',index_col = 0)
-y_train = pd.read_csv('https://raw.githubusercontent.com/datach33z3/buyrfly/main/y_train.csv')
+train = pd.read_csv('https://raw.githubusercontent.com/datach33z3/buyfly/master/Data/train.csv',index_col = 0)
+y_train = pd.read_csv('https://raw.githubusercontent.com/datach33z3/buyfly/master/Data/y_train.csv',index_col = 0)
 y_train.columns = ['SalesPrice']
 y_train = y_train.SalesPrice.values
 ##test = pd.read_csv('C:/Users/MrChe/Downloads/Xdat.csv')
